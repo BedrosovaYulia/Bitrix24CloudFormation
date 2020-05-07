@@ -31,7 +31,7 @@ Resources:
   InstanceSecurityGroup:
     Type: 'AWS::EC2::SecurityGroup'
     Properties:
-      GroupDescription: Enable access via port 22 and 80
+      GroupDescription: Enable access via port 22 and 80 and 443
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: 22
@@ -40,6 +40,10 @@ Resources:
         - IpProtocol: tcp
           FromPort: 80
           ToPort: 80
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 443
+          ToPort: 443
           CidrIp: 0.0.0.0/0
 
 
