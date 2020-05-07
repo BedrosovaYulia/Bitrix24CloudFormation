@@ -20,6 +20,24 @@ Resources:
       Tags:
         - Key: Name
           Value: My CF Instance
+    Metadata: 
+      AWS::CloudFormation::Init: 
+        config: 
+          packages: 
+            :
+          groups: 
+            :
+          users: 
+            :
+          sources: 
+            :
+          files: 
+            :
+          commands: 
+            :
+          services: 
+            :
+
   InstanceSecurityGroup:
     Type: 'AWS::EC2::SecurityGroup'
     Properties:
