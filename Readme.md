@@ -1,18 +1,12 @@
-1) To create your EC2 instance for Bitrix24 using CloudFormation, first save CF_Template.json to your own S3 bucket, 
+1) To create your EC2 instance for Bitrix24 using CloudFormation, first save CF_Template.yml to your own S3 bucket, 
 then update the command below to reference your bucket as well as the name of a Key pair that you own in the 
 region that you are working in. 
 
 WINDOWS users will need to use ^ (Shift + 6) instead of \ for line continuation.
 
 aws cloudformation create-stack --stack-name CodeDeployDemoStack \
---template-url http://s3-eu-west-1.amazonaws.com/cftemplates-faye/CF_Template.json \
---parameters ParameterKey=InstanceCount,ParameterValue=1 \
-ParameterKey=InstanceType,ParameterValue=t2.micro \
-ParameterKey=KeyPairName,ParameterValue=irkp \
-ParameterKey=OperatingSystem,ParameterValue=Linux \
-ParameterKey=SSHLocation,ParameterValue=0.0.0.0/0 \
-ParameterKey=TagKey,ParameterValue=Name \
-ParameterKey=TagValue,ParameterValue=CodeDeployDemo \
+--template-url http://s3-region.amazonaws.com/bucket-name/CF_Template.yml \
+--parameters ParameterKey=KeyName,ParameterValue=key_name \
 --capabilities CAPABILITY_IAM
 
 2) Verify that the Cloud Formation stack has completed using: 
