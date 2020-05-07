@@ -4,7 +4,7 @@ Description: Template to create an EC2 instance and enable SSH
 
 Parameters: 
   KeyName:
-    Description: Name of SSH KeyPair
+    Description: aws_key4
     Type: 'AWS::EC2::KeyPair::KeyName'
     ConstraintDescription: Provide the name of an existing SSH key pair
 
@@ -13,7 +13,7 @@ Resources:
     Type: 'AWS::EC2::Instance'
     Properties:
       InstanceType: t2.micro
-      ImageId: ami-0bdb1d6c15a40392c
+      ImageId: ami-098bb3651924ae737
       KeyName: !Ref KeyName
       SecurityGroups:
        - Ref: InstanceSecurityGroup
@@ -29,6 +29,17 @@ Resources:
         FromPort: 22
         ToPort: 22
         CidrIp: 0.0.0.0/0
+
+Metadata:
+        'AWS::CloudFormation::Init': 
+          configSets:
+            Install:
+              packages:
+                yum:
+                  sendmail
+              
+            
+        
 
 Outputs: 
   InstanceID:
