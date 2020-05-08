@@ -28,58 +28,45 @@ Resources:
           exec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1
           yum update -y
           yum install -y sendmail
+          echo '; Configure error processing\n
+                display_errors = On\n
+                error_reporting = E_ALL & ~E_NOTICE & ~E_WARNING\n
+
+                ; Set some more PHP parameters\n
+                enable_dl = Off\n
+                short_open_tag = On\n
+                allow_url_fopen = On\n
+
+                ; Change default values of important constants\n
+                max_input_vars = 10000\n
+                max_file_uploads = 100\n
+                max_execution_time = 300\n
+                post_max_size = 1024M\n
+                upload_max_filesize = 1024M\n
+                pcre.backtrack_limit = 1000000\n
+                pcre.recursion_limit = 14000\n
+                realpath_cache_size = 4096k\n
+                mysql.default_socket = /var/lib/mysqld/mysqld.sock\n
+                mysqli.default_socket = /var/lib/mysqld/mysqld.sock\n
+
+                ; Utf-8 support\n
+                mbstring.func_overload = 2\n
+                default_charset = UTF-8\n
+
+                ; Configure PHP sessions\n
+                session.entropy_length = 128\n
+                session.entropy_file = /dev/urandom\n
+                session.save_path = "/tmp/php_sessions/www"\n
+                session.cookie_httponly = On\n
+
+                ; Set directory for temporary files\n
+                upload_tmp_dir = "/tmp/php_upload/www"\n
+
+                sendmail_path="/usr/sbin/sendmail -t -i -f y@bedrosova.ru"\n
+                date.timezone = Europe/Moscow\n
+                memory_limit = 256M' > /etc/php.d/z_bx_custom_settings.ini
     
-    Metadata:
-      'AWS::CloudFormation::Init':
-        files:
-          /etc/php.d/bitrixenv.ini:
-            content: !Sub | 
-              ; Set parameters required for proper Bitrix engine functioning.
-              ; You can redefine parameters specified in this file
-              ; by editing /etc/php.d/z_bx_custom_settings.ini
-
-              ; Configure error processing
-              display_errors = On
-              error_reporting = E_ALL & ~E_NOTICE & ~E_WARNING
-
-              ; Set some more PHP parameters
-              enable_dl = Off
-              short_open_tag = On
-              allow_url_fopen = On
-
-              ; Change default values of important constants
-              max_input_vars = 10000
-              max_file_uploads = 100
-              max_execution_time = 300
-              post_max_size = 1024M
-              upload_max_filesize = 1024M
-              pcre.backtrack_limit = 1000000
-              pcre.recursion_limit = 14000
-              realpath_cache_size = 4096k
-              mysql.default_socket = /var/lib/mysqld/mysqld.sock
-              mysqli.default_socket = /var/lib/mysqld/mysqld.sock
-
-              ; Utf-8 support
-              mbstring.func_overload = 2
-              default_charset = UTF-8
-
-              ; Configure PHP sessions
-              session.entropy_length = 128
-              session.entropy_file = /dev/urandom
-              session.save_path = "/tmp/php_sessions/www"
-              session.cookie_httponly = On
-
-              ; Set directory for temporary files
-              upload_tmp_dir = "/tmp/php_upload/www"
-
-              sendmail_path="/usr/sbin/sendmail -t -i -f y@bedrosova.ru"
-              date.timezone = Europe/Moscow
-              memory_limit = 256M
-      
-            mode: "000644"
-            owner: "root"
-            group: "root"
-
+    
   InstanceSecurityGroup:
     Type: 'AWS::EC2::SecurityGroup'
     Properties:
@@ -100,7 +87,7 @@ Resources:
 
 
 
-  
+
 Outputs: 
   InstanceID:
     Description: The Instance ID
