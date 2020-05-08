@@ -11,4 +11,4 @@ aws cloudformation create-stack --stack-name CodeDeployB24Stack \
 2) Verify that the Cloud Formation stack has completed using: 
 aws cloudformation describe-stacks --stack-name CodeDeployB24Stack --query "Stacks[0].StackStatus" --output text
 
-3) After installation passvord for root and bitrix will be: bx24thebest
+3) After installation password for root and bitrix will be: bx24thebest
