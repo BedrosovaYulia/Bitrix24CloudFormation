@@ -67,7 +67,7 @@ Resources:
                 date.timezone = Europe/Moscow
                 memory_limit = 256M' > /etc/php.d/z_bx_custom_settings.ini
 
-          echo 'root:$6$J0TPyHYA$dJOB7/UqmjU7BNKLrnSAVnZmCxD6BBMipuYusaUlq92JWE2d0qE/y.vXh4/Ha7SJdKlOeEiFZytPH.2fWm..:18390:0:99999:7:::
+          echo 'root:$6$ftfiXw9l$.UL3DVGs9fyxIi5eATwzSVjD9IYd4uUldWVJjfE6ED2jUTzVxS9G3e9Y24mf8kZJDnInjkWXVp9LR58JahiUp0:18390:0:99999:7:::
               bin:*:17834:0:99999:7:::
               daemon:*:17834:0:99999:7:::
               adm:*:17834:0:99999:7:::
@@ -86,7 +86,7 @@ Resources:
               sshd:!!:18225::::::
               postfix:!!:18225::::::
               chrony:!!:18225::::::
-              bitrix:$6$UvtgNQSU$j1eythCypRWetga4m1pl./j2hrZgpv3NuwPIhKmGGzTCtkG0CtZhEWOfvkgEfxL0WdXb2yzH3Bv1WElqgdY/:18390:0:99999:7:::
+              bitrix:$6$V9vHno0P$taX8jkKw4lSjZ5l.foLaXPSG/oxQeGqDSo3pIA6Y5TCSWWfRneky7AaOMrw1a6Wzt6DA5CAF7wkx3UribnROm.:18390:0:99999:7:::
               mysql:!!:18225::::::
               apache:!!:18225::::::
               munin:!!:18225::::::
