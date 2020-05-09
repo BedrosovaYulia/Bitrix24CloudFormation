@@ -6,7 +6,6 @@ region that you are working in.
 aws cloudformation create-stack --stack-name CodeDeployB24Stack \
 --template-url http://s3-region.amazonaws.com/bucket-name/CF_Template.yml \
 --parameters ParameterKey=KeyName,ParameterValue=key_name \
---capabilities CAPABILITY_IAM
 
 2) Verify that the Cloud Formation stack has completed using: 
 aws cloudformation describe-stacks --stack-name CodeDeployB24Stack --query "Stacks[0].StackStatus" --output text
