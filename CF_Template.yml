@@ -16,7 +16,7 @@ Resources:
       InstanceType: t2.micro
       ImageId: ami-098bb3651924ae737
       KeyName: !Ref KeyName
-      PrivateIpAddress: 172.31.92.1
+      PrivateIpAddress: 172.31.55.98
       SecurityGroups:
        - Ref: InstanceSecurityGroup
       Tags:
@@ -137,7 +137,7 @@ Resources:
 
           exec > >(tee /var/log/user-data-pp.log|logger -t user-data -s 2>/dev/console) 2>&1
 
-          echo -e "ip-172-31-92-1.ec2.internal\nY\n\n0\n0" > /opt/webdir/bin/menu/10_push/pp.txt
+          echo -e "ip-172-31-55-98.ec2.internal\nY\n\n0\n0" > /opt/webdir/bin/menu/10_push/pp.txt
           /opt/webdir/bin/menu/10_push/01_configure_push_service.sh < /opt/webdir/bin/menu/10_push/pp.txt
 
     
